@@ -9,7 +9,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: process.env.React_APP_TMDB,
+    Authorization: process.env.REACT_APP_TMDB,
   },
 };
 
