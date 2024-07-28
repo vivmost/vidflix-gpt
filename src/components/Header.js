@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import { toggleGptSearch } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -45,12 +46,30 @@ const Header = () => {
       });
   };
 
+  const handleGptSearchClick = () => {
+    //Toggle gpt search
+    dispatch(toggleGptSearch());
+  };
+
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img className="w-44" src={LOGO} alt="logo" />
 
       {user && (
         <div className="flex p-2">
+          <select className="p-2 m-2 rounded-lg bg-black text-white">
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <option key={lang.identifier} value={lang.name}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={handleGptSearchClick}
+            className="py-2 px-4 m-2 text-white rounded-lg  border border-white"
+          >
+            GPT Search
+          </button>
           <img
             className="hidden md:block w-12 h-12"
             alt="usericon"
