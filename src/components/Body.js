@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Login from "./Login";
 import Browse from "./Browse";
 import Error from "./Error";
+import ErrorAI from "./ErrorAI";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const Body = () => {
@@ -17,6 +18,10 @@ const Body = () => {
     {
       path: "/error",
       element: <Error />,
+    },
+    {
+      path: "/error_openAI",
+      element: <ErrorAI />,
     },
   ]);
 
