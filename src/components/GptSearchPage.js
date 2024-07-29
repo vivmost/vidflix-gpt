@@ -7,10 +7,16 @@ const GptSearchPage = () => {
   return (
     <div>
       <div className="absolute -z-10">
-        <img src={BACKGROUND} alt="background" />
+        <img
+          src={BACKGROUND}
+          alt="background"
+          className="h-screen object-cover md:w-screen"
+        />
       </div>
-      <GptSearchBar />
-      <GptMovieSuggestions />
+      <div className="">
+        <GptSearchBar />
+        <GptMovieSuggestions />
+      </div>
     </div>
   );
 };
