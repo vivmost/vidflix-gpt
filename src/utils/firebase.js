@@ -10,12 +10,12 @@ import { getAuth } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_apiKey_firebase}`,
-  authDomain: "netflixgpt-f16e7.firebaseapp.com",
-  projectId: "netflixgpt-f16e7",
-  storageBucket: "netflixgpt-f16e7.appspot.com",
-  messagingSenderId: "716615710548",
-  appId: "1:716615710548:web:f180a9d75d48b9148a3ac1",
-  measurementId: "G-KHXDLFNQ94",
+  authDomain: "netflixgpt-83535.firebaseapp.com",
+  projectId: "netflixgpt-83535",
+  storageBucket: "netflixgpt-83535.appspot.com",
+  messagingSenderId: "15861724002",
+  appId: "1:15861724002:web:dbcb0e6e57b8fcac8d323b",
+  measurementId: "G-SNFC6M26VX",
 };
 
 // Initialize Firebase
