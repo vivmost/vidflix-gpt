@@ -27,30 +27,33 @@ const GptSearchBar = () => {
 
   const handleGPTSearchClick = async () => {
     // Make api call to GPT and get movie results
-    const gptQuerry =
-      "Act as a movie reccomendation system and suggest some movies for the query" +
-      searchText.current.value +
-      ". only give me 5 movie names, comma separated like the example result given ahead. Example Result:  Gadar, Sholay, Don, Golmaal, Koi Mil Gaya, Titanic, Fault in our stars";
+    try {
+      const gptQuerry =
+        "Act as a movie reccomendation system and suggest some movies for the query" +
+        searchText.current.value +
+        ". only give me 5 movie names, comma separated like the example result given ahead. Example Result:  Gadar, Sholay, Don, Golmaal, Koi Mil Gaya, Titanic, Fault in our stars";
 
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuerry }],
-      model: "gpt-3.5-turbo",
-    });
+      const gptResults = await openai.chat.completions.create({
+        messages: [{ role: "user", content: gptQuerry }],
+        model: "gpt-3.5-turbo",
+      });
 
-    if (!gptResults.choices) {
-      // Error Handling
+      if (!gptResults.choices) {
+        // Error Handling
+      }
+
+      const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
+
+      // For each movie search TMDB API
+      const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+      const tmdbResults = await Promise.all(promiseArray);
+
+      dispatch(
+        addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+      );
+    } catch {
       navigate("/error_openAI");
     }
-
-    const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
-
-    // For each movie search TMDB API
-    const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-    const tmdbResults = await Promise.all(promiseArray);
-
-    dispatch(
-      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
-    );
   };
 
   return (

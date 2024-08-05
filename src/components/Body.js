@@ -3,31 +3,20 @@ import Login from "./Login";
 import Browse from "./Browse";
 import Error from "./Error";
 import ErrorAI from "./ErrorAI";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Body = () => {
-  const appRouter = createBrowserRouter([
-    {
-      path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/browse",
-      element: <Browse />,
-    },
-    {
-      path: "/error",
-      element: <Error />,
-    },
-    {
-      path: "/error_openAI",
-      element: <ErrorAI />,
-    },
-  ]);
-
   return (
     <div>
-      <RouterProvider router={appRouter} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/error_openAI" element={<ErrorAI />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
+      ;
     </div>
   );
 };
