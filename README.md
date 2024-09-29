@@ -1,4 +1,4 @@
-# Netflix GPT
+# vidflix GPT
 
 - Create React App
 - Configured TailwindCSS
@@ -60,7 +60,7 @@
     - Title & Description
     - MovieSuggestions
       - MovieLists \* N
-- NetflixGPT
+- vidflixGPT
   - Search Bar
   - Movie Suggestions
 

@@ -10,7 +10,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { BACKGROUND, photoURL } from "../utils/constants";
+// import { photoURL } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -49,17 +49,17 @@ const Login = () => {
           //update user profile
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: photoURL,
+            photoURL: "photoURL",
           })
             .then(() => {
               // Profile updated!
-              const { uid, email, displayName, photoURL } = auth.currentUser;
+              const { uid, email, displayName } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
                   email: email,
                   displayName: displayName,
-                  photoURL: photoURL,
+                  photoURL: "photoURL",
                 })
               );
             })
@@ -97,7 +97,7 @@ const Login = () => {
       <div className="absolute">
         <img
           className="h-screen object-cover md:w-screen "
-          src={BACKGROUND}
+          src={"BACKGROUND"}
           alt="background"
         />
       </div>
@@ -136,7 +136,7 @@ const Login = () => {
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
-            ? "New to Netflix? Sign Up Now"
+            ? "New to vidflix? Sign Up Now"
             : "Already Registered Sign In Now"}
         </p>
       </form>
